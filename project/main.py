@@ -21,7 +21,7 @@ def home(request: Request):
 @app.post("/tasks", status_code=201)
 def run_task(payload = Body(...)):
     task_type = payload["type"]
-    task = create_task.delay(int(task_type))
+    task = create_task.delay(task_type)
     return JSONResponse({"task_id": task.id})
 
 
